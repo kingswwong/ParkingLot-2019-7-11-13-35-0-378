@@ -13,6 +13,9 @@ public class ParkingBoy {
     }
 
     public Car fetch(Ticket ticket) {
+        if(ticket == null){
+            return null;
+        }
         List<Car> carList = parkingLot.getCarList();
         for (Car car : carList) {
             if(car.getTicket().equals(ticket)){
