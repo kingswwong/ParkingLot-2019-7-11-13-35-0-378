@@ -19,6 +19,7 @@ public class ParkingBoy {
         List<Car> carList = parkingLot.getCarList();
         for (Car car : carList) {
             if(car.getTicket().equals(ticket)){
+                carList.remove(car);
                 return car;
             }
         }

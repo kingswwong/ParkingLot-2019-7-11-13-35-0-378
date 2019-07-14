@@ -24,7 +24,6 @@ public class Story1Test {
         Car car = new Car("ac1's car");
         //when
         Ticket ticket = parkingBoy.park(car);
-        String result = "ac1's car ticket";
         //then
         assertThat(car.getTicket(),is(ticket));
 
@@ -57,5 +56,24 @@ public class Story1Test {
         returnCar = parkingBoy.fetch(ticketNewTicket);
         //then
         assertThat(returnCar,is(nullValue()));
+    }
+
+    @Test
+    public void should_return_null_when_ticket_is_been_used(){
+        Manager manager = new Manager();
+        ParkingLot parkingLotSizeOf10 = new ParkingLot();
+        ParkingLot parkingLotSizeOf20 = new ParkingLot(10);
+        manager.addParkingLot(parkingLotSizeOf10);
+        manager.addParkingLot(parkingLotSizeOf20);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        manager.distributionParkingLot(parkingBoy);
+        //given
+        Car car = new Car("ac4's car");
+        //when
+        Ticket returnTicket = parkingBoy.park(car);
+        parkingBoy.fetch(returnTicket);
+        Car returnCar = parkingBoy.fetch(returnTicket);
+        //then
+        assertThat(returnCar, is(nullValue()));
     }
 }
