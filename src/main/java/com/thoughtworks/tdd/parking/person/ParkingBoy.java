@@ -9,7 +9,15 @@ import java.util.List;
 import java.util.Observable;
 
 public class ParkingBoy extends Observable {
+    private String id;
     private List<ParkingLot> parkingLotList = new ArrayList<>();
+
+    public ParkingBoy() {
+    }
+
+    public ParkingBoy(String id) {
+        this.id = id;
+    }
 
     public Ticket park(Car car) {
         ParkingLot parkingLotIsMoreEmpty = null;
@@ -70,5 +78,13 @@ public class ParkingBoy extends Observable {
 
     public void setParkingLot(List<ParkingLot> parkingLotList) {
         this.parkingLotList = parkingLotList;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

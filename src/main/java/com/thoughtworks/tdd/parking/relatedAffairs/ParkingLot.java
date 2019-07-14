@@ -4,6 +4,7 @@ import com.thoughtworks.tdd.parking.car.Car;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ParkingLot {
     private final int size;
@@ -41,5 +42,20 @@ public class ParkingLot {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ParkingLot that = (ParkingLot) o;
+        return size == that.size &&
+                id == that.id &&
+                Objects.equals(carList, that.carList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(size, carList, id);
     }
 }
