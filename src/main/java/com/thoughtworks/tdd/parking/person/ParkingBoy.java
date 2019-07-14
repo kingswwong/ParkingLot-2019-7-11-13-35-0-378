@@ -4,29 +4,36 @@ import com.thoughtworks.tdd.parking.car.Car;
 import com.thoughtworks.tdd.parking.relatedAffairs.ParkingLot;
 import com.thoughtworks.tdd.parking.relatedAffairs.Ticket;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
 public class ParkingBoy extends Observable {
-    private ParkingLot parkingLot;
+    private List<ParkingLot> parkingLotList = new ArrayList<>();
 
     public Ticket park(Car car) {
+        ParkingLot parkingLotIsUsed = null;
         if(car == null){
             return null;
         }
-        if(parkingLot.getCarList().size() + 1 >= parkingLot.getSize()){
+        for(ParkingLot parkingLot: parkingLotList){
+            if(parkingLot.getCarList().size() + 1 < parkingLot.getSize()){
+                parkingLotIsUsed = parkingLot;
+            }
+        }
+        if(parkingLotIsUsed == null){
             setChanged();
             notifyObservers("Not enough position.");
             return null;
         }
-        for(Car parkingCar: parkingLot.getCarList()){
+        for(Car parkingCar: parkingLotIsUsed.getCarList()){
             if(car.equals(parkingCar)){
                 return null;
             }
         }
         Ticket ticket = new Ticket(car.getId() + " ticket");
         car.setTicket(ticket);
-        parkingLot.getCarList().add(car);
+        parkingLotIsUsed.getCarList().add(car);
         return ticket;
     }
 
@@ -36,11 +43,13 @@ public class ParkingBoy extends Observable {
             notifyObservers("Please provide your parking ticket.");
             return null;
         }
-        List<Car> carList = parkingLot.getCarList();
-        for (Car car : carList) {
-            if(car.getTicket().equals(ticket)){
-                carList.remove(car);
-                return car;
+        for(ParkingLot parkingLotInMange: parkingLotList){
+            List<Car> carList = parkingLotInMange.getCarList();
+            for (Car car : carList) {
+                if(car.getTicket().equals(ticket)){
+                    carList.remove(car);
+                    return car;
+                }
             }
         }
         setChanged();
@@ -48,11 +57,11 @@ public class ParkingBoy extends Observable {
         return null;
     }
 
-    public ParkingLot getParkingLot() {
-        return parkingLot;
+    public List<ParkingLot> getParkingLot() {
+        return parkingLotList;
     }
 
-    public void setParkingLot(ParkingLot parkingLot) {
-        this.parkingLot = parkingLot;
+    public void setParkingLot(List<ParkingLot> parkingLotList) {
+        this.parkingLotList = parkingLotList;
     }
 }

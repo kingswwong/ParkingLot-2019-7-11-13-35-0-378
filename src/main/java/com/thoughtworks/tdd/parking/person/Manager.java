@@ -14,6 +14,6 @@ public class Manager {
     }
 
     public void distributionParkingLot(ParkingBoy parkingBoy){
-        parkingBoy.setParkingLot(parkingLotList.get(0));
+        parkingBoy.setParkingLot(parkingLotList);
     }
 }
