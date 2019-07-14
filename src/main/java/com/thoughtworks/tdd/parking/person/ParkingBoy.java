@@ -15,6 +15,8 @@ public class ParkingBoy extends Observable {
             return null;
         }
         if(parkingLot.getCarList().size() + 1 >= parkingLot.getSize()){
+            setChanged();
+            notifyObservers("Not enough position.");
             return null;
         }
         for(Car parkingCar: parkingLot.getCarList()){

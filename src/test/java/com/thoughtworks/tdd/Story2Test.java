@@ -39,7 +39,7 @@ public class Story2Test {
     }
 
     @Test
-    public void should_return_error_message_Please_provide_your_parking_ticket(){
+    public void should_return_error_message_Please_provide_your_parking_ticket_when_given_null_ticket(){
         Manager manager = new Manager();
         ParkingLot parkingLotSizeOf10 = new ParkingLot();
         ParkingLot parkingLotSizeOf20 = new ParkingLot(10);
@@ -56,5 +56,27 @@ public class Story2Test {
         parkingBoy.fetch(null);
         //then
         assertThat(customer1.getWrongMessageList().get(0),is("Please provide your parking ticket."));
+    }
+
+    @Test
+    public void should_return_error_message_Not_enough_position_when_parkinglot_is_full(){
+        Manager manager = new Manager();
+        ParkingLot parkingLotSizeOf10 = new ParkingLot();
+        ParkingLot parkingLotSizeOf20 = new ParkingLot(10);
+        manager.addParkingLot(parkingLotSizeOf10);
+        manager.addParkingLot(parkingLotSizeOf20);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        manager.distributionParkingLot(parkingBoy);
+        for(int i = 0;i < 10;i++){
+            parkingBoy.park(new Car(i + " car's"));
+        }
+        //given
+        Car car = new Car("customer1 Car");
+        Customer customer1 = new Customer(car);
+        parkingBoy.addObserver(customer1);
+        //when
+        parkingBoy.park(car);
+        //then
+        assertThat(customer1.getWrongMessageList().get(0),is("Not enough position."));
     }
 }
