@@ -37,4 +37,24 @@ public class Story2Test {
         assertThat(customer1.getWrongMessageList().get(0),is("Unrecognized parking ticket."));
         assertThat(customer1.getWrongMessageList().get(1),is("Unrecognized parking ticket."));
     }
+
+    @Test
+    public void should_return_error_message_Please_provide_your_parking_ticket(){
+        Manager manager = new Manager();
+        ParkingLot parkingLotSizeOf10 = new ParkingLot();
+        ParkingLot parkingLotSizeOf20 = new ParkingLot(10);
+        manager.addParkingLot(parkingLotSizeOf10);
+        manager.addParkingLot(parkingLotSizeOf20);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        manager.distributionParkingLot(parkingBoy);
+        //given
+        Car car = new Car("customer1 Car");
+        Customer customer1 = new Customer(car);
+        parkingBoy.addObserver(customer1);
+        //when
+        parkingBoy.park(car);
+        parkingBoy.fetch(null);
+        //then
+        assertThat(customer1.getWrongMessageList().get(0),is("Please provide your parking ticket."));
+    }
 }

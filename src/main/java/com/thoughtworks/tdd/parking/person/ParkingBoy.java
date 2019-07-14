@@ -30,6 +30,8 @@ public class ParkingBoy extends Observable {
 
     public Car fetch(Ticket ticket) {
         if(ticket == null){
+            setChanged();
+            notifyObservers("Please provide your parking ticket.");
             return null;
         }
         List<Car> carList = parkingLot.getCarList();
