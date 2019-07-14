@@ -1,4 +1,6 @@
-package com.thoughtworks.tdd.parking;
+package com.thoughtworks.tdd.parking.relatedAffairs;
+
+import com.thoughtworks.tdd.parking.car.Car;
 
 import java.util.ArrayList;
 import java.util.List;

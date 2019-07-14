@@ -1,4 +1,4 @@
-package com.thoughtworks.tdd.parking;
+package com.thoughtworks.tdd.parking.relatedAffairs;
 
 import java.util.Objects;
 

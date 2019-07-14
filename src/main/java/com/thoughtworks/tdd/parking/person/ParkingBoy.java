@@ -1,4 +1,8 @@
-package com.thoughtworks.tdd.parking;
+package com.thoughtworks.tdd.parking.person;
+
+import com.thoughtworks.tdd.parking.car.Car;
+import com.thoughtworks.tdd.parking.relatedAffairs.ParkingLot;
+import com.thoughtworks.tdd.parking.relatedAffairs.Ticket;
 
 import java.util.List;
 
