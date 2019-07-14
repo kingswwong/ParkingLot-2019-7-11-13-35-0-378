@@ -6,6 +6,9 @@ public class ParkingBoy {
     private ParkingLot parkingLot;
 
     public Ticket park(Car car) {
+        if(parkingLot.getCarList().size() + 1 >= parkingLot.getSize()){
+            return null;
+        }
         Ticket ticket = new Ticket(car.getId() + " ticket");
         car.setTicket(ticket);
         parkingLot.getCarList().add(car);

@@ -15,6 +15,10 @@ public class ParkingLot {
         this.size = size;
     }
 
+    public int getSize() {
+        return size;
+    }
+
     public List<Car> getCarList() {
         return carList;
     }

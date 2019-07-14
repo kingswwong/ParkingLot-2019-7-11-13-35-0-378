@@ -76,4 +76,21 @@ public class Story1Test {
         //then
         assertThat(returnCar, is(nullValue()));
     }
+
+    @Test
+    public void should_return_null_when_parkinglot_is_full(){
+        Manager manager = new Manager();
+        ParkingLot parkingLotSizeOf10 = new ParkingLot();
+        ParkingLot parkingLotSizeOf20 = new ParkingLot(10);
+        manager.addParkingLot(parkingLotSizeOf10);
+        manager.addParkingLot(parkingLotSizeOf20);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        manager.distributionParkingLot(parkingBoy);
+        for(int i = 0;i < 10;i++){
+            parkingBoy.park(new Car(i + " car's"));
+        }
+        Car car = new Car("11 car's");
+        Ticket returnTicket = parkingBoy.park(car);
+        assertThat(returnTicket,is(nullValue()));
+    }
 }
