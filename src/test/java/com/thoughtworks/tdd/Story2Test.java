@@ -17,9 +17,7 @@ public class Story2Test {
     public void should_return_error_message_Unrecognized_parking_ticket_when_customer_given_the_wrong_ticket_or_ticket_is_been_user(){
         Manager manager = new Manager();
         ParkingLot parkingLotSizeOf10 = new ParkingLot();
-        ParkingLot parkingLotSizeOf20 = new ParkingLot(10);
         manager.addParkingLot(parkingLotSizeOf10);
-        manager.addParkingLot(parkingLotSizeOf20);
         ParkingBoy parkingBoy = new ParkingBoy();
         manager.distributionParkingLot(parkingBoy);
         //given
@@ -42,9 +40,7 @@ public class Story2Test {
     public void should_return_error_message_Please_provide_your_parking_ticket_when_given_null_ticket(){
         Manager manager = new Manager();
         ParkingLot parkingLotSizeOf10 = new ParkingLot();
-        ParkingLot parkingLotSizeOf20 = new ParkingLot(10);
         manager.addParkingLot(parkingLotSizeOf10);
-        manager.addParkingLot(parkingLotSizeOf20);
         ParkingBoy parkingBoy = new ParkingBoy();
         manager.distributionParkingLot(parkingBoy);
         //given
@@ -62,9 +58,7 @@ public class Story2Test {
     public void should_return_error_message_Not_enough_position_when_parkinglot_is_full(){
         Manager manager = new Manager();
         ParkingLot parkingLotSizeOf10 = new ParkingLot();
-        ParkingLot parkingLotSizeOf20 = new ParkingLot(10);
         manager.addParkingLot(parkingLotSizeOf10);
-        manager.addParkingLot(parkingLotSizeOf20);
         ParkingBoy parkingBoy = new ParkingBoy();
         manager.distributionParkingLot(parkingBoy);
         for(int i = 0;i < 10;i++){

@@ -19,9 +19,7 @@ public class Story1Test {
     public void should_return_a_ticket_when_customer_give_a_car_to_parking_boy_to_park_and_should_return_back_car_when_given_the_ticket() {
         Manager manager = new Manager();
         ParkingLot parkingLotSizeOf10 = new ParkingLot();
-        ParkingLot parkingLotSizeOf20 = new ParkingLot(10);
         manager.addParkingLot(parkingLotSizeOf10);
-        manager.addParkingLot(parkingLotSizeOf20);
         ParkingBoy parkingBoy = new ParkingBoy();
         manager.distributionParkingLot(parkingBoy);
         //given
@@ -42,9 +40,7 @@ public class Story1Test {
     public void should_return_null_when_ticket_is_wrong_or_null(){
         Manager manager = new Manager();
         ParkingLot parkingLotSizeOf10 = new ParkingLot();
-        ParkingLot parkingLotSizeOf20 = new ParkingLot(10);
         manager.addParkingLot(parkingLotSizeOf10);
-        manager.addParkingLot(parkingLotSizeOf20);
         ParkingBoy parkingBoy = new ParkingBoy();
         manager.distributionParkingLot(parkingBoy);
         //given
@@ -66,9 +62,7 @@ public class Story1Test {
     public void should_return_null_when_ticket_is_been_used(){
         Manager manager = new Manager();
         ParkingLot parkingLotSizeOf10 = new ParkingLot();
-        ParkingLot parkingLotSizeOf20 = new ParkingLot(10);
         manager.addParkingLot(parkingLotSizeOf10);
-        manager.addParkingLot(parkingLotSizeOf20);
         ParkingBoy parkingBoy = new ParkingBoy();
         manager.distributionParkingLot(parkingBoy);
         //given
@@ -85,9 +79,7 @@ public class Story1Test {
     public void should_return_null_when_parkinglot_is_full(){
         Manager manager = new Manager();
         ParkingLot parkingLotSizeOf10 = new ParkingLot();
-        ParkingLot parkingLotSizeOf20 = new ParkingLot(10);
         manager.addParkingLot(parkingLotSizeOf10);
-        manager.addParkingLot(parkingLotSizeOf20);
         ParkingBoy parkingBoy = new ParkingBoy();
         manager.distributionParkingLot(parkingBoy);
         for(int i = 0;i < 10;i++){
@@ -102,9 +94,7 @@ public class Story1Test {
     public void should_return_null_when_car_is_parked(){
         Manager manager = new Manager();
         ParkingLot parkingLotSizeOf10 = new ParkingLot();
-        ParkingLot parkingLotSizeOf20 = new ParkingLot(10);
         manager.addParkingLot(parkingLotSizeOf10);
-        manager.addParkingLot(parkingLotSizeOf20);
         ParkingBoy parkingBoy = new ParkingBoy();
         manager.distributionParkingLot(parkingBoy);
         //given
@@ -120,9 +110,7 @@ public class Story1Test {
     public void should_return_null_when_car_is_null(){
         Manager manager = new Manager();
         ParkingLot parkingLotSizeOf10 = new ParkingLot();
-        ParkingLot parkingLotSizeOf20 = new ParkingLot(10);
         manager.addParkingLot(parkingLotSizeOf10);
-        manager.addParkingLot(parkingLotSizeOf20);
         ParkingBoy parkingBoy = new ParkingBoy();
         manager.distributionParkingLot(parkingBoy);
         //given
