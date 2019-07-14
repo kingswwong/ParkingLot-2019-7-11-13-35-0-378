@@ -1,6 +1,7 @@
 package com.thoughtworks.tdd.parking.person;
 
 import com.thoughtworks.tdd.parking.car.Car;
+import com.thoughtworks.tdd.parking.parkingway.ParkingWay;
 import com.thoughtworks.tdd.parking.relatedAffairs.ParkingLot;
 import com.thoughtworks.tdd.parking.relatedAffairs.Ticket;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-public class ParkingBoy extends Observable {
+public class ParkingBoy extends Observable implements ParkingWay{
     private String id;
     private List<ParkingLot> parkingLotList = new ArrayList<>();
 
@@ -41,6 +42,7 @@ public class ParkingBoy extends Observable {
         return ticket;
     }
 
+    @Override
     public Car fetch(Ticket ticket) {
         if(ticket == null){
             setChanged();
@@ -58,6 +60,16 @@ public class ParkingBoy extends Observable {
         }
         setChanged();
         notifyObservers("Unrecognized parking ticket.");
+        return null;
+    }
+
+    @Override
+    public ParkingLot parkingWay() {
+        return null;
+    }
+
+    @Override
+    public Ticket parking(Car car) {
         return null;
     }
 

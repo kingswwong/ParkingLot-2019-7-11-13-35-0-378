@@ -10,18 +10,22 @@ public class ParkingLot {
     private final int size;
     private List<Car> carList = new ArrayList<>();
     private int id;
+    private boolean isDistribution;
 
     public ParkingLot() {
         this.size = 10;
+        this.isDistribution = false;
     }
 
     public ParkingLot(int size) {
         this.size = size;
+        this.isDistribution = false;
     }
 
     public ParkingLot(int size, int id) {
         this.size = size;
         this.id = id;
+        this.isDistribution = false;
     }
 
     public int getSize() {
@@ -57,5 +61,14 @@ public class ParkingLot {
     @Override
     public int hashCode() {
         return Objects.hash(size, carList, id);
+    }
+
+
+    public boolean isDistribution() {
+        return isDistribution;
+    }
+
+    public void setDistribution(boolean distribution) {
+        isDistribution = distribution;
     }
 }

@@ -7,4 +7,5 @@ import com.thoughtworks.tdd.parking.relatedAffairs.Ticket;
 public interface ParkingWay {
     ParkingLot parkingWay();
     Ticket parking(Car car);
+    Car fetch(Ticket ticket);
 }
