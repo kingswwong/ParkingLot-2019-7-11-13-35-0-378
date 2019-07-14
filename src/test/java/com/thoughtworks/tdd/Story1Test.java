@@ -111,4 +111,21 @@ public class Story1Test {
         //then
         assertThat(returnTicket, is(nullValue()));
     }
+
+    @Test
+    public void should_return_null_when_car_is_null(){
+        Manager manager = new Manager();
+        ParkingLot parkingLotSizeOf10 = new ParkingLot();
+        ParkingLot parkingLotSizeOf20 = new ParkingLot(10);
+        manager.addParkingLot(parkingLotSizeOf10);
+        manager.addParkingLot(parkingLotSizeOf20);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        manager.distributionParkingLot(parkingBoy);
+        //given
+        Car car = null;
+        //when
+        Ticket returnTicket = parkingBoy.park(car);
+        //then
+        assertThat(returnTicket, is(nullValue()));
+    }
 }
