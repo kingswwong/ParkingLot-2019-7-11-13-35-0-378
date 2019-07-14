@@ -61,4 +61,27 @@ public class Story6Test {
         Car returnCar = manager.fetch(returnTicket);
         assertThat(car,is(returnCar));
     }
+
+    @Test
+    public void should_the_manager_tell_the_error_message_Unrecognized_parking_ticket_when_customer_given_the_wrong_ticket_or_ticket_is_been_user(){
+        Manager manager = new Manager();
+        ParkingLot parkingLotSizeOf10 = new ParkingLot();
+        manager.addParkingLot(parkingLotSizeOf10);
+        NormalParkingBoy parkingBoy = new NormalParkingBoy();
+        manager.distributionParkingLot(parkingBoy);
+        //given
+        Car car = new Car("customer1 Car");
+        Customer customer1 = new Customer(car);
+        parkingBoy.addObserver(customer1);
+        //when
+        Ticket reusltTicket = parkingBoy.parking(car);
+        //the parking boy does not provide the ticket
+        parkingBoy.fetch(new Ticket("wrong ticket"));
+        //the ticket has been used
+        parkingBoy.fetch(reusltTicket);
+        parkingBoy.fetch(reusltTicket);
+        //then
+        assertThat(customer1.getWrongMessageList().get(0),is("Unrecognized parking ticket."));
+        assertThat(customer1.getWrongMessageList().get(1),is("Unrecognized parking ticket."));
+    }
 }

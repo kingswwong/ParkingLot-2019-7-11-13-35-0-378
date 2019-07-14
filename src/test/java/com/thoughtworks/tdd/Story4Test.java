@@ -3,10 +3,8 @@ package com.thoughtworks.tdd;
 import com.thoughtworks.tdd.parking.car.Car;
 import com.thoughtworks.tdd.parking.person.Customer;
 import com.thoughtworks.tdd.parking.person.Manager;
-import com.thoughtworks.tdd.parking.person.ParkingBoy;
 import com.thoughtworks.tdd.parking.person.SmartParkingBoy;
 import com.thoughtworks.tdd.parking.relatedAffairs.ParkingLot;
-import com.thoughtworks.tdd.parking.relatedAffairs.Ticket;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.is;
