@@ -6,7 +6,12 @@ public class ParkingBoy {
     public Ticket park(Car car){
         Ticket ticket = new Ticket(car.getId() + " ticket");
         car.setTicket(ticket);
+        parkingLot.getCarList().add(car);
         return ticket;
+    }
+
+    public Car fetch(Ticket ticket){
+        return null;
     }
 
     public ParkingLot getParkingLot() {

@@ -14,4 +14,12 @@ public class ParkingLot {
     public ParkingLot(int size) {
         this.size = size;
     }
+
+    public List<Car> getCarList() {
+        return carList;
+    }
+
+    public void setCarList(List<Car> carList) {
+        this.carList = carList;
+    }
 }
