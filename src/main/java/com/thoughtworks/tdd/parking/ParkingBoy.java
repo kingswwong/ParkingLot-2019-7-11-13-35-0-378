@@ -9,6 +9,11 @@ public class ParkingBoy {
         if(parkingLot.getCarList().size() + 1 >= parkingLot.getSize()){
             return null;
         }
+        for(Car parkingCar: parkingLot.getCarList()){
+            if(car.equals(parkingCar)){
+                return null;
+            }
+        }
         Ticket ticket = new Ticket(car.getId() + " ticket");
         car.setTicket(ticket);
         parkingLot.getCarList().add(car);
