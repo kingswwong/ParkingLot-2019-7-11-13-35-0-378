@@ -4,6 +4,7 @@ import com.thoughtworks.tdd.parking.car.Car;
 import com.thoughtworks.tdd.parking.person.Customer;
 import com.thoughtworks.tdd.parking.person.Manager;
 import com.thoughtworks.tdd.parking.person.ParkingBoy;
+import com.thoughtworks.tdd.parking.person.SuperSmartParkingBoy;
 import com.thoughtworks.tdd.parking.relatedAffairs.ParkingLot;
 import org.junit.jupiter.api.Test;
 
@@ -18,14 +19,14 @@ public class Story5Test {
         ParkingLot parkingLotSizeOf10 = new ParkingLot(10,2);
         manager.addParkingLot(parkingLotSizeOf13);
         manager.addParkingLot(parkingLotSizeOf10);
-        ParkingBoy parkingBoy = new ParkingBoy();
+        SuperSmartParkingBoy parkingBoy = new SuperSmartParkingBoy();
         manager.distributionParkingLot(parkingBoy);
         Car car1 = new Car("1 car's");
-        parkingBoy.park(car1);
+        parkingBoy.parking(car1);
         Car car2 = new Car("2 car's");
         Customer customer = new Customer(car2);
         parkingBoy.addObserver(customer);
-        parkingBoy.park(car2);
+        parkingBoy.parking(car2);
         String successMessage = "Park Success!Your car is parking in 2 lot.";
         assertThat(customer.getSuccessMessage(),is(successMessage));
     }

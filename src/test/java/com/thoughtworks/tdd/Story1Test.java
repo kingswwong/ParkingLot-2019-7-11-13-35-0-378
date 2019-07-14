@@ -2,6 +2,7 @@ package com.thoughtworks.tdd;
 
 import com.thoughtworks.tdd.parking.car.Car;
 import com.thoughtworks.tdd.parking.person.Manager;
+import com.thoughtworks.tdd.parking.person.NormalParkingBoy;
 import com.thoughtworks.tdd.parking.person.ParkingBoy;
 import com.thoughtworks.tdd.parking.relatedAffairs.ParkingLot;
 import com.thoughtworks.tdd.parking.relatedAffairs.Ticket;
@@ -20,12 +21,12 @@ public class Story1Test {
         Manager manager = new Manager();
         ParkingLot parkingLotSizeOf10 = new ParkingLot();
         manager.addParkingLot(parkingLotSizeOf10);
-        ParkingBoy parkingBoy = new ParkingBoy();
+        NormalParkingBoy parkingBoy = new NormalParkingBoy();
         manager.distributionParkingLot(parkingBoy);
         //given
         Car car = new Car("ac1's car");
         //when
-        Ticket ticket = parkingBoy.park(car);
+        Ticket ticket = parkingBoy.parking(car);
         //then
         assertThat(car.getTicket(),is(ticket));
 
@@ -41,7 +42,7 @@ public class Story1Test {
         Manager manager = new Manager();
         ParkingLot parkingLotSizeOf10 = new ParkingLot();
         manager.addParkingLot(parkingLotSizeOf10);
-        ParkingBoy parkingBoy = new ParkingBoy();
+        NormalParkingBoy parkingBoy = new NormalParkingBoy();
         manager.distributionParkingLot(parkingBoy);
         //given
         Ticket ticketNewTicket = new Ticket("ac4's car Ticket");
@@ -52,7 +53,7 @@ public class Story1Test {
         //given
         Car car = new Car("ac3's car");
         //when
-        parkingBoy.park(car);
+        parkingBoy.parking(car);
         returnCar = parkingBoy.fetch(ticketNewTicket);
         //then
         assertThat(returnCar,is(nullValue()));
@@ -63,12 +64,12 @@ public class Story1Test {
         Manager manager = new Manager();
         ParkingLot parkingLotSizeOf10 = new ParkingLot();
         manager.addParkingLot(parkingLotSizeOf10);
-        ParkingBoy parkingBoy = new ParkingBoy();
+        NormalParkingBoy parkingBoy = new NormalParkingBoy();
         manager.distributionParkingLot(parkingBoy);
         //given
         Car car = new Car("ac4's car");
         //when
-        Ticket returnTicket = parkingBoy.park(car);
+        Ticket returnTicket = parkingBoy.parking(car);
         parkingBoy.fetch(returnTicket);
         Car returnCar = parkingBoy.fetch(returnTicket);
         //then
@@ -80,13 +81,13 @@ public class Story1Test {
         Manager manager = new Manager();
         ParkingLot parkingLotSizeOf10 = new ParkingLot();
         manager.addParkingLot(parkingLotSizeOf10);
-        ParkingBoy parkingBoy = new ParkingBoy();
+        NormalParkingBoy parkingBoy = new NormalParkingBoy();
         manager.distributionParkingLot(parkingBoy);
         for(int i = 0;i < 10;i++){
-            parkingBoy.park(new Car(i + " car's"));
+            parkingBoy.parking(new Car(i + " car's"));
         }
         Car car = new Car("11 car's");
-        Ticket returnTicket = parkingBoy.park(car);
+        Ticket returnTicket = parkingBoy.parking(car);
         assertThat(returnTicket,is(nullValue()));
     }
 
@@ -95,13 +96,13 @@ public class Story1Test {
         Manager manager = new Manager();
         ParkingLot parkingLotSizeOf10 = new ParkingLot();
         manager.addParkingLot(parkingLotSizeOf10);
-        ParkingBoy parkingBoy = new ParkingBoy();
+        NormalParkingBoy parkingBoy = new NormalParkingBoy();
         manager.distributionParkingLot(parkingBoy);
         //given
         Car car = new Car("ac7's car");
         //when
-         parkingBoy.park(car);
-        Ticket returnTicket = parkingBoy.park(car);
+         parkingBoy.parking(car);
+        Ticket returnTicket = parkingBoy.parking(car);
         //then
         assertThat(returnTicket, is(nullValue()));
     }
@@ -111,12 +112,12 @@ public class Story1Test {
         Manager manager = new Manager();
         ParkingLot parkingLotSizeOf10 = new ParkingLot();
         manager.addParkingLot(parkingLotSizeOf10);
-        ParkingBoy parkingBoy = new ParkingBoy();
+        NormalParkingBoy parkingBoy = new NormalParkingBoy();
         manager.distributionParkingLot(parkingBoy);
         //given
         Car car = null;
         //when
-        Ticket returnTicket = parkingBoy.park(car);
+        Ticket returnTicket = parkingBoy.parking(car);
         //then
         assertThat(returnTicket, is(nullValue()));
     }

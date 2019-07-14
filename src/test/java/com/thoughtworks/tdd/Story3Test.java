@@ -2,6 +2,7 @@ package com.thoughtworks.tdd;
 
 import com.thoughtworks.tdd.parking.car.Car;
 import com.thoughtworks.tdd.parking.person.Manager;
+import com.thoughtworks.tdd.parking.person.NormalParkingBoy;
 import com.thoughtworks.tdd.parking.person.ParkingBoy;
 import com.thoughtworks.tdd.parking.relatedAffairs.ParkingLot;
 import com.thoughtworks.tdd.parking.relatedAffairs.Ticket;
@@ -18,13 +19,13 @@ public class Story3Test {
         ParkingLot parkingLotSizeOf20 = new ParkingLot(10);
         manager.addParkingLot(parkingLotSizeOf10);
         manager.addParkingLot(parkingLotSizeOf20);
-        ParkingBoy parkingBoy = new ParkingBoy();
+        NormalParkingBoy parkingBoy = new NormalParkingBoy();
         manager.distributionParkingLot(parkingBoy);
         for(int i = 0;i < 10;i++){
-            parkingBoy.park(new Car(i + " car's"));
+            parkingBoy.parking(new Car(i + " car's"));
         }
         Car car = new Car("11 car's");
-        Ticket returnTicket = parkingBoy.park(car);
+        Ticket returnTicket = parkingBoy.parking(car);
         assertThat(returnTicket,is(car.getTicket()));
     }
 }

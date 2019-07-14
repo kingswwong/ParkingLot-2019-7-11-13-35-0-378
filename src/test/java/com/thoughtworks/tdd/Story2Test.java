@@ -3,6 +3,7 @@ package com.thoughtworks.tdd;
 import com.thoughtworks.tdd.parking.car.Car;
 import com.thoughtworks.tdd.parking.person.Customer;
 import com.thoughtworks.tdd.parking.person.Manager;
+import com.thoughtworks.tdd.parking.person.NormalParkingBoy;
 import com.thoughtworks.tdd.parking.person.ParkingBoy;
 import com.thoughtworks.tdd.parking.relatedAffairs.ParkingLot;
 import com.thoughtworks.tdd.parking.relatedAffairs.Ticket;
@@ -18,14 +19,14 @@ public class Story2Test {
         Manager manager = new Manager();
         ParkingLot parkingLotSizeOf10 = new ParkingLot();
         manager.addParkingLot(parkingLotSizeOf10);
-        ParkingBoy parkingBoy = new ParkingBoy();
+        NormalParkingBoy parkingBoy = new NormalParkingBoy();
         manager.distributionParkingLot(parkingBoy);
         //given
         Car car = new Car("customer1 Car");
         Customer customer1 = new Customer(car);
         parkingBoy.addObserver(customer1);
         //when
-        Ticket reusltTicket = parkingBoy.park(car);
+        Ticket reusltTicket = parkingBoy.parking(car);
         //the parking boy does not provide the ticket
         parkingBoy.fetch(new Ticket("wrong ticket"));
         //the ticket has been used
@@ -41,14 +42,14 @@ public class Story2Test {
         Manager manager = new Manager();
         ParkingLot parkingLotSizeOf10 = new ParkingLot();
         manager.addParkingLot(parkingLotSizeOf10);
-        ParkingBoy parkingBoy = new ParkingBoy();
+        NormalParkingBoy parkingBoy = new NormalParkingBoy();
         manager.distributionParkingLot(parkingBoy);
         //given
         Car car = new Car("customer1 Car");
         Customer customer1 = new Customer(car);
         parkingBoy.addObserver(customer1);
         //when
-        parkingBoy.park(car);
+        parkingBoy.parking(car);
         parkingBoy.fetch(null);
         //then
         assertThat(customer1.getWrongMessageList().get(0),is("Please provide your parking ticket."));
@@ -59,17 +60,17 @@ public class Story2Test {
         Manager manager = new Manager();
         ParkingLot parkingLotSizeOf10 = new ParkingLot();
         manager.addParkingLot(parkingLotSizeOf10);
-        ParkingBoy parkingBoy = new ParkingBoy();
+        NormalParkingBoy parkingBoy = new NormalParkingBoy();
         manager.distributionParkingLot(parkingBoy);
         for(int i = 0;i < 10;i++){
-            parkingBoy.park(new Car(i + " car's"));
+            parkingBoy.parking(new Car(i + " car's"));
         }
         //given
         Car car = new Car("customer1 Car");
         Customer customer1 = new Customer(car);
         parkingBoy.addObserver(customer1);
         //when
-        parkingBoy.park(car);
+        parkingBoy.parking(car);
         //then
         assertThat(customer1.getWrongMessageList().get(0),is("Not enough position."));
     }
