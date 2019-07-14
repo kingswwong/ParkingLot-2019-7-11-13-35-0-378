@@ -5,8 +5,9 @@ import com.thoughtworks.tdd.parking.relatedAffairs.ParkingLot;
 import com.thoughtworks.tdd.parking.relatedAffairs.Ticket;
 
 import java.util.List;
+import java.util.Observable;
 
-public class ParkingBoy {
+public class ParkingBoy extends Observable {
     private ParkingLot parkingLot;
 
     public Ticket park(Car car) {
@@ -38,6 +39,8 @@ public class ParkingBoy {
                 return car;
             }
         }
+        setChanged();
+        notifyObservers("Unrecognized parking ticket.");
         return null;
     }
 

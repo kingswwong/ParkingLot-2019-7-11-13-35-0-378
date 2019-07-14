@@ -1,0 +1,40 @@
+package com.thoughtworks.tdd;
+
+import com.thoughtworks.tdd.parking.car.Car;
+import com.thoughtworks.tdd.parking.person.Customer;
+import com.thoughtworks.tdd.parking.person.Manager;
+import com.thoughtworks.tdd.parking.person.ParkingBoy;
+import com.thoughtworks.tdd.parking.relatedAffairs.ParkingLot;
+import com.thoughtworks.tdd.parking.relatedAffairs.Ticket;
+import org.junit.jupiter.api.Test;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+public class Story2Test {
+
+    @Test
+    public void should_return_error_message_Unrecognized_parking_ticket_when_customer_given_the_wrong_ticket_or_ticket_is_been_user(){
+        Manager manager = new Manager();
+        ParkingLot parkingLotSizeOf10 = new ParkingLot();
+        ParkingLot parkingLotSizeOf20 = new ParkingLot(10);
+        manager.addParkingLot(parkingLotSizeOf10);
+        manager.addParkingLot(parkingLotSizeOf20);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        manager.distributionParkingLot(parkingBoy);
+        //given
+        Car car = new Car("customer1 Car");
+        Customer customer1 = new Customer(car);
+        parkingBoy.addObserver(customer1);
+        //when
+        Ticket reusltTicket = parkingBoy.park(car);
+        //the parking boy does not provide the ticket
+        parkingBoy.fetch(new Ticket("wrong ticket"));
+        //the ticket has been used
+        parkingBoy.fetch(reusltTicket);
+        parkingBoy.fetch(reusltTicket);
+        //then
+        assertThat(customer1.getWrongMessageList().get(0),is("Unrecognized parking ticket."));
+        assertThat(customer1.getWrongMessageList().get(1),is("Unrecognized parking ticket."));
+    }
+}
