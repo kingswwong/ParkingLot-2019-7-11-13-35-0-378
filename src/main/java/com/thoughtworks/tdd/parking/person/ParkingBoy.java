@@ -16,11 +16,12 @@ public class ParkingBoy extends Observable {
         if(car == null){
             return null;
         }
-        int min = Integer.MIN_VALUE;
+        double min = Double.MIN_VALUE;
         for(ParkingLot parkingLot: parkingLotList){
             if(parkingLot.getCarList().size() + 1 < parkingLot.getSize()){
-                if(parkingLot.getSize() - parkingLot.getCarList().size() > min){
-                    min = parkingLot.getSize() - parkingLot.getCarList().size();
+                double parkingRate = (parkingLot.getSize() - parkingLot.getCarList().size()) / parkingLot.getSize();
+                if(parkingRate > min){
+                    min = parkingRate ;
                     parkingLotIsMoreEmpty = parkingLot;
                 }
             }
