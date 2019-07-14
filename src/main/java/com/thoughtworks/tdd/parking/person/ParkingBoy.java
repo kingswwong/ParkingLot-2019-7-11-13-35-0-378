@@ -12,28 +12,34 @@ public class ParkingBoy extends Observable {
     private List<ParkingLot> parkingLotList = new ArrayList<>();
 
     public Ticket park(Car car) {
-        ParkingLot parkingLotIsUsed = null;
+        ParkingLot parkingLotIsMoreEmpty = null;
         if(car == null){
             return null;
         }
+        int min = Integer.MIN_VALUE;
         for(ParkingLot parkingLot: parkingLotList){
             if(parkingLot.getCarList().size() + 1 < parkingLot.getSize()){
-                parkingLotIsUsed = parkingLot;
+                if(parkingLot.getSize() - parkingLot.getCarList().size() > min){
+                    min = parkingLot.getSize() - parkingLot.getCarList().size();
+                    parkingLotIsMoreEmpty = parkingLot;
+                }
             }
         }
-        if(parkingLotIsUsed == null){
+        if(parkingLotIsMoreEmpty == null){
             setChanged();
             notifyObservers("Not enough position.");
             return null;
         }
-        for(Car parkingCar: parkingLotIsUsed.getCarList()){
+        for(Car parkingCar: parkingLotIsMoreEmpty.getCarList()){
             if(car.equals(parkingCar)){
                 return null;
             }
         }
         Ticket ticket = new Ticket(car.getId() + " ticket");
         car.setTicket(ticket);
-        parkingLotIsUsed.getCarList().add(car);
+        parkingLotIsMoreEmpty.getCarList().add(car);
+        setChanged();
+        notifyObservers("Park Success!Your car is parking in " + parkingLotIsMoreEmpty.getId() + " lot.");
         return ticket;
     }
 

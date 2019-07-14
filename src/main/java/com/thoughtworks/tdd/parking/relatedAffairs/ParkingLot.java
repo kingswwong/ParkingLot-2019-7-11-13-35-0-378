@@ -8,6 +8,7 @@ import java.util.List;
 public class ParkingLot {
     private final int size;
     private List<Car> carList = new ArrayList<>();
+    private int id;
 
     public ParkingLot() {
         this.size = 10;
@@ -15,6 +16,11 @@ public class ParkingLot {
 
     public ParkingLot(int size) {
         this.size = size;
+    }
+
+    public ParkingLot(int size, int id) {
+        this.size = size;
+        this.id = id;
     }
 
     public int getSize() {
@@ -27,5 +33,13 @@ public class ParkingLot {
 
     public void setCarList(List<Car> carList) {
         this.carList = carList;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
