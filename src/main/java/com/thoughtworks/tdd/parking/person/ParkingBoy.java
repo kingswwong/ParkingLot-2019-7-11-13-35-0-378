@@ -19,36 +19,25 @@ public class ParkingBoy extends Observable {
         this.id = id;
     }
 
-    public Ticket park(Car car) {
-        ParkingLot parkingLotIsMoreEmpty = null;
+    public Ticket park(Car car,ParkingLot parkingLot) {
         if(car == null){
             return null;
         }
-        double min = Double.MIN_VALUE;
-        for(ParkingLot parkingLot: parkingLotList){
-            if(parkingLot.getCarList().size() + 1 < parkingLot.getSize()){
-                double parkingRate = (parkingLot.getSize() - parkingLot.getCarList().size()) / parkingLot.getSize();
-                if(parkingRate > min){
-                    min = parkingRate ;
-                    parkingLotIsMoreEmpty = parkingLot;
-                }
-            }
-        }
-        if(parkingLotIsMoreEmpty == null){
+        if(parkingLot == null){
             setChanged();
             notifyObservers("Not enough position.");
             return null;
         }
-        for(Car parkingCar: parkingLotIsMoreEmpty.getCarList()){
+        for(Car parkingCar: parkingLot.getCarList()){
             if(car.equals(parkingCar)){
                 return null;
             }
         }
         Ticket ticket = new Ticket(car.getId() + " ticket");
         car.setTicket(ticket);
-        parkingLotIsMoreEmpty.getCarList().add(car);
+        parkingLot.getCarList().add(car);
         setChanged();
-        notifyObservers("Park Success!Your car is parking in " + parkingLotIsMoreEmpty.getId() + " lot.");
+        notifyObservers("Park Success!Your car is parking in " + parkingLot.getId() + " lot.");
         return ticket;
     }
 
@@ -72,11 +61,11 @@ public class ParkingBoy extends Observable {
         return null;
     }
 
-    public List<ParkingLot> getParkingLot() {
+    public List<ParkingLot> getParkingLotList() {
         return parkingLotList;
     }
 
-    public void setParkingLot(List<ParkingLot> parkingLotList) {
+    public void setParkingLotList(List<ParkingLot> parkingLotList) {
         this.parkingLotList = parkingLotList;
     }
 
@@ -87,4 +76,5 @@ public class ParkingBoy extends Observable {
     public void setId(String id) {
         this.id = id;
     }
+
 }
