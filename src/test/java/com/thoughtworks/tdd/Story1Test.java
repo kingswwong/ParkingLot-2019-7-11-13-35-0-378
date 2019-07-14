@@ -11,7 +11,7 @@ public class Story1Test {
 
 
     @Test
-    public void should_return_a_ticket_when_customer_give_a_car_to_parking_boy_to_park() {
+    public void should_return_a_ticket_when_customer_give_a_car_to_parking_boy_to_park_and_should_return_back_car_when_given_the_ticket() {
         Manager manager = new Manager();
         ParkingLot parkingLotSizeOf10 = new ParkingLot();
         ParkingLot parkingLotSizeOf20 = new ParkingLot(10);
@@ -26,5 +26,11 @@ public class Story1Test {
         String result = "ac1's car ticket";
         //then
         assertThat(ticket.getId(),is(result));
+
+        //given ticket
+        //when
+        Car returnCar = parkingBoy.fetch(ticket);
+        //then
+        assertThat(returnCar,is(car));
     }
 }
