@@ -116,15 +116,30 @@ public class Manager extends Observable implements ParkingWay,Observer {
         return null;
     }
 
-    public Ticket orderParkingBoyToPark(Car car){
-        ParkingBoy randomParkingBoy = this.parkingBoyList.get(0);
+    public Ticket orderParkingBoyToPark(Car car,  String parkBoyId){
+        ParkingBoy randomParkingBoy = null;
+        for(ParkingBoy parkingBoy: parkingBoyList){
+            if(parkingBoy.getId().equals(parkBoyId)){
+                randomParkingBoy = parkingBoy;
+                break;
+            }
+        }
+        if(randomParkingBoy == null){
+            return null;
+        }
         randomParkingBoy.addObserver(this);
         Ticket ticket = randomParkingBoy.parking(car);
         return ticket;
     }
 
-    public Car orderParkingBoyToFetch(Ticket ticket){
-        ParkingBoy randomParkingBoy = this.parkingBoyList.get(0);
+    public Car orderParkingBoyToFetch(Ticket ticket, String parkBoyId){
+        ParkingBoy randomParkingBoy = null;
+        for(ParkingBoy parkingBoy: parkingBoyList){
+            if(parkingBoy.getId().equals(parkBoyId)){
+                randomParkingBoy = parkingBoy;
+                break;
+            }
+        }
         randomParkingBoy.addObserver(this);
         Car car = randomParkingBoy.fetch(ticket);
         return car;
