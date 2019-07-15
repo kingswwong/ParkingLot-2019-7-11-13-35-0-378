@@ -69,17 +69,16 @@ public class Story6Test {
         manager.addParkingLot(parkingLotSizeOf10);
         NormalParkingBoy parkingBoy = new NormalParkingBoy();
         manager.distributionParkingLot(parkingBoy);
-        //given
+        manager.addParkingBoy(parkingBoy);
         Car car = new Car("customer1 Car");
+        //given
         Customer customer1 = new Customer(car);
-        parkingBoy.addObserver(customer1);
+        manager.addObserver(customer1);
         //when
-        Ticket reusltTicket = parkingBoy.parking(car);
-        //the parking boy does not provide the ticket
-        parkingBoy.fetch(new Ticket("wrong ticket"));
-        //the ticket has been used
-        parkingBoy.fetch(reusltTicket);
-        parkingBoy.fetch(reusltTicket);
+        Ticket reusltTicket = manager.orderParkingBoyToPark(car);
+        manager.orderParkingBoyToFetch(new Ticket("wrong ticket"));
+        manager.orderParkingBoyToFetch(reusltTicket);
+        manager.orderParkingBoyToFetch(reusltTicket);
         //then
         assertThat(customer1.getWrongMessageList().get(0),is("Unrecognized parking ticket."));
         assertThat(customer1.getWrongMessageList().get(1),is("Unrecognized parking ticket."));

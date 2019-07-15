@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-public class ParkingBoy extends Observable implements ParkingWay{
+public abstract class ParkingBoy extends Observable implements ParkingWay{
     private String id;
     private List<ParkingLot> parkingLotList = new ArrayList<>();
 
@@ -63,15 +63,6 @@ public class ParkingBoy extends Observable implements ParkingWay{
         return null;
     }
 
-    @Override
-    public ParkingLot parkingWay() {
-        return null;
-    }
-
-    @Override
-    public Ticket parking(Car car) {
-        return null;
-    }
 
     public List<ParkingLot> getParkingLotList() {
         return parkingLotList;

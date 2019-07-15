@@ -118,8 +118,16 @@ public class Manager extends Observable implements ParkingWay,Observer {
 
     public Ticket orderParkingBoyToPark(Car car){
         ParkingBoy randomParkingBoy = this.parkingBoyList.get(0);
+        randomParkingBoy.addObserver(this);
         Ticket ticket = randomParkingBoy.parking(car);
         return ticket;
+    }
+
+    public Car orderParkingBoyToFetch(Ticket ticket){
+        ParkingBoy randomParkingBoy = this.parkingBoyList.get(0);
+        randomParkingBoy.addObserver(this);
+        Car car = randomParkingBoy.fetch(ticket);
+        return car;
     }
 
     @Override
